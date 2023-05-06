@@ -6,4 +6,3 @@ engine = create_engine("postgresql+psycopg://bbcxkzwq:kAGRBX_cZegi16YmVvc3YYIYAy
 
 Base = declarative_base()
 session = Session(engine)
-
