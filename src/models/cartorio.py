@@ -12,4 +12,6 @@ class Cartorio(BaseModel):
     endereco: str
     escrevente: str
     telefone: str
+    telefone2: str | None = None
+    email: str
     cnj: str
