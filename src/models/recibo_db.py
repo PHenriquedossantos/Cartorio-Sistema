@@ -1,6 +1,8 @@
 from sqlalchemy import Column, String, UUID, ForeignKey, DateTime, Text
 from src.database.dbconfig import Base
+from src.models.cliente_db import Cliente
 from sqlalchemy.orm import relationship
+
 
 class Recibo(Base):
     __tablename__ = 'recibos'
@@ -11,11 +13,12 @@ class Recibo(Base):
     #servicos = relationship()
     nome_apresentante = Column(String)
     data = Column(DateTime)
-    atendente_id = Column(UUID, ForeignKey('users.id'))
+    atendente_id = Column(UUID, ForeignKey('principal.users.id'))
     resumo = Column(Text)
-    cliente_id = Column(UUID, ForeignKey('dados_cliente.id'), nullable=False)
+    cliente_id = Column(UUID, ForeignKey('principal.dados_cliente.id'), nullable=False)
 
     cliente = relationship('Cliente', back_populates='recibos', cascade='all')
+    #cliente = relationship('Cliente', back_populates='recibos', cascade='all')
     atendente = relationship('User', back_populates='recibos', cascade='all')
     
     

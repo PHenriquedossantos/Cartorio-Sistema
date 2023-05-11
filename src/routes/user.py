@@ -8,7 +8,7 @@ api_router = APIRouter(prefix='/user')
 def create_user(user: User):
     user_core = UserCore()
     new_user = user_core.create_user(user)
-    return new_user
+    return user
 
 @api_router.delete('/{id}')
 def delete_user(id: str):
