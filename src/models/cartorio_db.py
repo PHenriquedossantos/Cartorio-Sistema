@@ -13,8 +13,9 @@ class Cartorio(Base):
     endereco = Column(String)
     escrevente = Column(String)
     telefone = Column(String)
+    telefone2 = Column(String)
+    email = Column(String)
     cnj = Column(String, unique=True)
-
 
 
     def to_dict(self):
