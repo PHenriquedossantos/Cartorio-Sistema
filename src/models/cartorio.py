@@ -5,13 +5,13 @@ class Cartorio(BaseModel):
     __tablename__ = 'cartorios'
 
     id: str = uuid4().hex
-    nome_fantasia: str
+    name: str
     cnpj: str
-    tabeliao: str
-    tabeliao_substituto: str
-    endereco: str
-    escrevente: str
-    telefone: str
-    telefone2: str | None = None
-    email: str
+    notary: str
+    notary_sub: str
+    address: str
+    clerk: str
+    phone: str
+    phone_2: str | None = None
+    mail: str
     cnj: str

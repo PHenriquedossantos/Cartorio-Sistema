@@ -1,32 +1,26 @@
 from sqlalchemy import Column, String, UUID, ForeignKey, DateTime, Text
+from sqlalchemy.sql import func
 from src.database.dbconfig import Base
-from src.models.cliente_db import Cliente
 from sqlalchemy.orm import relationship
 
 
 class Recibo(Base):
-    __tablename__ = 'recibos'
+    __tablename__ = 'receipt'
     __table_args__ = {'schema': 'principal'}
 
     id = Column(UUID, primary_key=True)
-    #atendimento_id = Column(UUID, ForeignKey(''))
-    #servicos = relationship()
-    nome_apresentante = Column(String)
-    data = Column(DateTime)
-    atendente_id = Column(UUID, ForeignKey('principal.users.id'))
-    resumo = Column(Text)
-    cliente_id = Column(UUID, ForeignKey('principal.dados_cliente.id'), nullable=False)
-
-    cliente = relationship('Cliente', back_populates='recibos', cascade='all')
-    #cliente = relationship('Cliente', back_populates='recibos', cascade='all')
-    atendente = relationship('User', back_populates='recibos', cascade='all')
-    
-    
+    client_id = Column(UUID, ForeignKey('principal.dados_cliente.id'), nullable=False)
+    representative_name = Column(String, nullable=False)
+    user_id = Column(UUID, ForeignKey('principal.users.id'))
+    date = Column(DateTime, server_default=func.now())
+    resume = Column(Text)
+    client = relationship('Cliente', back_populates='recibos', cascade='all')
+    user = relationship('User', back_populates='recibos', cascade='all')
 
     def to_dict(self):
         return {
             "id": self.id,
-            "atendimento_id": self.atendimento_id,
-            "servicos": self.servicos,
-            "dados_cliente": self.dados_cliente
+            "representative_name": self.representative_name,
+            "date": self.date,
+            "resume": self.resume
         }

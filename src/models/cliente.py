@@ -3,9 +3,9 @@ from uuid import uuid4
 
 class Cliente(BaseModel):
     id: str = uuid4().hex
-    nome_cliente: str
-    cpf: str
-    endereco: str
-    contato: str
-    contato_2: str | None = None 
-    email: str | None = None
+    name: str
+    document: str
+    address: str
+    phone: str
+    phone_2: str | None = None 
+    mail: str | None = None
