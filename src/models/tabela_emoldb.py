@@ -6,24 +6,22 @@ class TabelaEmol(Base):
     __tablename__ = 'tabela_emol'
     __table_args__ = {'schema': 'principal'}
 
-    codigo_ato = Column(String, primary_key=True)
-    descricao_ato = Column(String)
-    tabela = Column(String)
-    item = Column(String, primary_key=True)
-    documento = Column(String)
-    quantidade = Column(Integer)
-    desconto = Column(Float)
-    valor = Column(Float)
-    custas = Column(Float)
-    fermoju = Column(Float)
-    selo = Column(Float)
+    codigo = Column(String, primary_key=True)
+    descricao = Column(String)
+    tipo_servico = Column(String, nullable=False)
+    tipo_selo = Column(String)
+    emolumentos = Column(String, primary_key=True)
+    fermoju = Column(String)
+    valor_selo = Column(Float)
+    subtotal = Column(Float)
     faadep = Column(Float)
-    frmp = Column(Float)
-    outros = Column(Float)
-    iss = Column(Float)
+    frmmp = Column(Float)
     total = Column(Float)
-    data = Column(String)
-    livro = Column(Integer)
-    folha = Column(Integer)
-    ordem = Column(Integer)
+    limite = Column(Float)
+    limete_excedente = Column(Float)
+    valor_por_excedente = Column(Float)
+    parcela_excedente = Column(Float)
+
+
+
 

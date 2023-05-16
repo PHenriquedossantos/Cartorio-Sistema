@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, UUID
 from src.database.dbconfig import Base
 
-class Cartorio(Base):
+class Registry(Base):
     __tablename__ = 'registry'
     __table_args__ = {'schema': 'principal'}
 

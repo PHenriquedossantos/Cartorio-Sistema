@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 
 
 class User(Base):
-    __tablename__ = 'users'
+    __tablename__ = 'user'
     __table_args__ = {'schema': 'principal'}
 
     id = Column(UUID, primary_key=True)
@@ -12,7 +12,7 @@ class User(Base):
     login = Column(String, unique=True)
     password = Column(String, nullable=False)
 
-    recibos = relationship('Recibo', back_populates='atendente', cascade='all, delete-orphan')
+    receipts = relationship('Receipt', back_populates='user', cascade='all, delete-orphan')
 
     def to_dict(self):
         return {
