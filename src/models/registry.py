@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from uuid import uuid4
 
-class Cartorio(BaseModel):
+class Registry(BaseModel):
     __tablename__ = 'cartorios'
 
     id: str = uuid4().hex

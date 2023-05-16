@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 
-class Servico(BaseModel):
+class Emolument(BaseModel):
     codigo: str
     descricao: str = ''
-    tipo_servico: str
+    tipo_servico: str = ''
     tipo_selo: str
     emolumentos: str
     fermoju: float = 0.0
