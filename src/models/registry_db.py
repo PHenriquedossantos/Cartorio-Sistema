@@ -1,9 +1,10 @@
 from sqlalchemy import Column, String, UUID
 from src.database.dbconfig import Base
 
+
 class Registry(Base):
-    __tablename__ = 'registry'
-    __table_args__ = {'schema': 'principal'}
+    __tablename__ = "registry"
+    __table_args__ = {"schema": "principal"}
 
     id = Column(UUID, primary_key=True)
     name = Column(String, nullable=False)
@@ -17,7 +18,6 @@ class Registry(Base):
     phone_2 = Column(String)
     mail = Column(String)
 
-
     def to_dict(self):
         return {
             "id": self.id,
@@ -30,5 +30,5 @@ class Registry(Base):
             "cnj": self.cnj,
             "mail": self.mail,
             "phone": self.phone,
-            "phone_2": self.phone_2
+            "phone_2": self.phone_2,
         }

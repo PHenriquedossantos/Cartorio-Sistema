@@ -1,9 +1,10 @@
 from pydantic import BaseModel
 
+
 class Emolument(BaseModel):
     codigo: str
-    descricao: str = ''
-    tipo_servico: str = ''
+    descricao: str = ""
+    tipo_servico: str = ""
     tipo_selo: str
     emolumentos: str
     fermoju: float = 0.0
@@ -16,4 +17,3 @@ class Emolument(BaseModel):
     limete_excedente: float = 0.0
     valor_por_excedente: float = 0.0
     parcela_excedente: float = 0.0
-

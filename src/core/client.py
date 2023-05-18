@@ -4,7 +4,7 @@ from src.database.dbconfig import session
 
 
 class ClientCore:
-    def create_cliente(self, client: Client):
+    def create_client(self, client: Client):
         with session:
             new_client = ClientDB(**client.dict())
             session.add(new_client)
