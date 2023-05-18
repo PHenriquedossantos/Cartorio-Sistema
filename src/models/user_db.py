@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String, UUID
 from src.database.dbconfig import Base
 from sqlalchemy.orm import relationship
+from bcrypt import hashpw, checkpw, gensalt
 
 
 class User(Base):
@@ -18,3 +19,15 @@ class User(Base):
 
     def to_dict(self):
         return {"id": self.id, "name": self.name, "login": self.login}
+
+    @staticmethod
+    def hash_password(password: str):
+        password = password.encode("utf-8")
+        return hashpw(password, gensalt(8))
+
+    @staticmethod
+    def check_password(self, password: str):
+        return checkpw(
+            password=password.encode("utf-8"),
+            hashed_password=self.password.encode("utf8"),
+        )
