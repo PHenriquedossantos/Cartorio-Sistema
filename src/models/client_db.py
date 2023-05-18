@@ -2,9 +2,10 @@ from sqlalchemy import Column, String, UUID
 from src.database.dbconfig import Base
 from sqlalchemy.orm import relationship
 
+
 class Client(Base):
-    __tablename__ = 'client'
-    __table_args__ = {'schema': 'principal'}
+    __tablename__ = "client"
+    __table_args__ = {"schema": "principal"}
 
     id = Column(UUID, primary_key=True)
     name = Column(String, nullable=False)
@@ -14,7 +15,9 @@ class Client(Base):
     phone_2 = Column(String)
     mail = Column(String)
 
-    receipt = relationship('Receipt', back_populates='client', cascade='all, delete-orphan')
+    receipts = relationship(
+        "Receipt", back_populates="client", cascade="all, delete-orphan"
+    )
 
     def to_dict(self):
         return {
@@ -24,8 +27,5 @@ class Client(Base):
             "address": self.address,
             "phone": self.phone,
             "phone_2": self.phone_2,
-            "mail": self.mail
+            "mail": self.mail,
         }
-
-
-

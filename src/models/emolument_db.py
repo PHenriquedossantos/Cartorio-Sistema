@@ -1,10 +1,12 @@
-from sqlalchemy import Column, String, Integer, Float
+from sqlalchemy import Column, String, Float
+from sqlalchemy.orm import relationship
 from src.database.dbconfig import Base
+from src.models.receipt_emolument_association import ReceiptEmolumentAssociation
 
 
 class Emolument(Base):
-    __tablename__ = 'emoluments'
-    __table_args__ = {'schema': 'principal'}
+    __tablename__ = "emolument"
+    __table_args__ = {"schema": "principal"}
 
     codigo = Column(String, primary_key=True)
     descricao = Column(String)
@@ -22,6 +24,6 @@ class Emolument(Base):
     valor_por_excedente = Column(Float)
     parcela_excedente = Column(Float)
 
-
-
-
+    receipts = relationship(
+        "ReceiptEmolumentAssociation", back_populates="emolument", cascade="all"
+    )
