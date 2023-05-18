@@ -1,6 +1,11 @@
 from fastapi import APIRouter, Response, status
 from src.models.user import User
+from src.models.update_user import UpdateUser
 from src.core.user import UserCore
+
+from src.errors.user_not_found_exception import UserNotFoundException
+
+from src.static.messages import NOT_FOUND, INTERNAL_ERROR
 
 api_router = APIRouter(prefix="/user")
 
@@ -26,3 +31,16 @@ def delete_user(id: str, response: Response):
         return True
     response.status_code = status.HTTP_404_NOT_FOUND
     return False
+
+
+@api_router.put("/{id}")
+def update_user(id: str, user: UpdateUser, response: Response):
+    user_core = UserCore()
+    try:
+        return user_core.update_user(id, user)
+    except UserNotFoundException:
+        response.status_code = status.HTTP_404_NOT_FOUND
+        return {"message": NOT_FOUND.format("Usuário")}
+    except Exception:
+        response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+        return {"message": INTERNAL_ERROR}
