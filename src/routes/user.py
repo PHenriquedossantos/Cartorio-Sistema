@@ -23,16 +23,6 @@ def create_user(user: User):
     user_core.create_user(user)
     return user
 
-
-@api_router.delete("/{id}")
-def delete_user(id: str, response: Response):
-    user_core = UserCore()
-    if user_core.delete_user(id):
-        return True
-    response.status_code = status.HTTP_404_NOT_FOUND
-    return False
-
-
 @api_router.put("/{id}")
 def update_user(id: str, user: UpdateUser, response: Response):
     user_core = UserCore()
@@ -44,3 +34,15 @@ def update_user(id: str, user: UpdateUser, response: Response):
     except Exception:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
         return {"message": INTERNAL_ERROR}
+
+
+@api_router.delete("/{id}")
+def delete_user(id: str, response: Response):
+    user_core = UserCore()
+    if user_core.delete_user(id):
+        return True
+    response.status_code = status.HTTP_404_NOT_FOUND
+    return False
+
+
+
